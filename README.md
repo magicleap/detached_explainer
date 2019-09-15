@@ -11,14 +11,19 @@
 ## Introduction
 [//]: # ([The “executive summary” or “abstract”. Explain in a few sentences what the goals of the project are, and a brief overview of how the solution works. This should be no more than 1-2 paragraphs.])
 
-With the advent of Virtual and Augmented reality, a new style of 3D interfaces is emerging. We are no longer limited to flat monitors; instead the user interface can be positioned within your 3D space (for VR) or the real world (for AR).
+With the advent of Virtual and Augmented reality, a new style of 3D interfaces is emerging. We are no longer limited to flat monitors; instead the user interface can be broken up in sections and positioned within your 3D space (for VR) or the real world (for AR).
 
-Browser vendors are developing WebXR for WebGL rendered content and are experimenting with [basic 3D models](https://developers.google.com/web/updates/2019/02/model-viewer) and other [interactive experiences](https://creator.magicleap.com/learn/guides/prismatic-getting-started). 
+Browser vendors are developing WebXR for WebGL rendered content and are experimenting with [basic 3D models](https://developers.google.com/web/updates/2019/02/model-viewer) and other [interactive experiences](https://creator.magicleap.com/learn/guides/prismatic-getting-started).
+However, until now it was not possible to position CSS generated content in 3D.
 
 ## proposal
 
-We want to add a new feature to CSS: Page decomposition.
-This feature would enable breaking off elements of web page into the 3-d space around the browser surface. This would make viewing web pages a much more immersive experience than looking at a rectangular surface would be. 
+We want enable breaking off parts of web page into the 3-d space around the browser surface because this would make viewing web pages a much more immersive experience than looking at a rectangular surface would be and we want to do this by introducing the smallest change to CSS as possible
+
+We think this can be accomplished by introducing a new value for `transform-style`: `detached`.
+This new property builds upon the existing 3D transforms that are shipping in all browsers and extends the behavior of `transform-style: preserve-3d`. The main difference is that instead of flattening the transformed elements back to the page, the transformed element stays in 3D space.
+
+
 Here is an example rendering of the effect:
 ![scene](https://github.com/rcabanier/detached_explainer/raw/master/detached.gif "Scene")
 
@@ -34,12 +39,9 @@ Content can not be place outside this space.
 ## Key scenarios
 [//]: # ([If there are a suite of interacting APIs, show how they work together to solve the key scenarios described.])
 
-### 1. Transform-style 'detached' behaves like 'flat' on platforms which do not support page decomposition.
+### 1. Transform-style 'detached' behaves like 'preserve-3d' on platforms which do not support page decomposition.
 
-Detaching a surface involves flattening the node and its children to a render context, compositing to a separate render surface and applying necessary transforms.
-This pattern closely resembles transform style flat, which also creates a render context, renders first to a temporary texture and is then composited to root render surface with necessary transforms.
-
-We do not default to preserve-3d as its behavior is significantly different from that of detached. Render contexts are not created for nodes with preserve-3d and their children are composited onto the closest flattened parent with aggregated transforms.
+We don't want authors to design different CSS for immersive vs flat browsers. If a user agent renders on a flat surface, it can use the 'preserve-3d' value
 
 [//]: # ([Description of the end-user scenario])
 
