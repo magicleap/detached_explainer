@@ -18,11 +18,13 @@ However, until now it was not possible to position CSS generated content in 3D.
 
 ## proposal
 
-We want enable breaking off parts of web page into the 3-d space around the browser surface because this would make viewing web pages a much more immersive experience than looking at a rectangular surface would be and we want to do this by introducing the smallest change to CSS as possible
+Our goal is to break off parts of web page into the 3-d space around the browser surface. 
 
-We think this can be accomplished by introducing a new value for `transform-style`: `detached`.
+This would make viewing web pages a much more immersive experience than looking at a rectangular surface. We hope to do accomplis this by introducing a small change to CSS.
+
+We propose to introduce a new value for `transform-style`: `detached`.
+
 This new property builds upon the existing 3D transforms that are shipping in all browsers and extends the behavior of `transform-style: preserve-3d`. The main difference is that instead of flattening the transformed elements back to the page, the transformed element stays in 3D space.
-
 
 Here is an example rendering of the effect:
 ![scene](https://github.com/rcabanier/detached_explainer/raw/master/detached.gif "Scene")
@@ -41,25 +43,26 @@ Content can not be place outside this space.
 
 ### 1. Transform-style 'detached' behaves like 'preserve-3d' on platforms which do not support page decomposition.
 
-We don't want authors to design different CSS for immersive vs flat browsers. If a user agent renders on a flat surface, it can use the 'preserve-3d' value
+We don't want authors to design different CSS for immersive vs flat browsers. If a user agent renders on a flat surface, it can use the 'preserve-3d' value which will render the page visually the same.
 
 [//]: # ([Description of the end-user scenario])
 
 [//]: # (// Sample code demonstrating how to use these APIs to address that scenario.)
-### 2. When detached elements are nested, the ancestor is detached while the child is composited to detached surface with transform style flat.
+### 2. When detached elements are nested, only the top most element will signal that its children at detached
 
-Allowing detached descendants of detached nodes significantly complicates the implementation and introduces multiple corner cases.
+Allowing detached descendants of detached nodes significantly complicates the implementation and introduces multiple corner cases. We propose that descendents with `detached` are treated as `preserve-3d`
 
 [//]: # (TODO: We need to explan this, but I cant think of the best explanation)
 
 
-### 3. Effects (transparency, clip) applied to parents of detached nodes are not applied to detached nodes as well.
+### 3. Effects such as clip applied to parents of detached nodes are not applied to detached nodes.
 
 The detached elements and their descendants are rendered onto surfaces that are distinct from their parents. Any effect applied to parents will be applied during the compositing stage and will not be applied to the detached elements.
 
-To apply effects to detached elements, the effects would have to be applied on the detached nodes themselves.
+Effects that cause flattening (ie filters, opacity) will cause the element to revert to `flat` behavior. 
 
-### 4. Transforms and transform-styles applied to children of detached element will behave as if render surface of detached element is root render surface.
+### 4. Only the top-most frame can use this feature.
+iframes should not be allowed to created detached content. This feature will only be available to the main frame. In iframes, `detached` will be treated at `preserve-3d`.
 
 ## Detailed design discussion
 
