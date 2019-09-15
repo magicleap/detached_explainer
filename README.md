@@ -30,6 +30,8 @@ If `transform-style: detached` is specified on an element, children with 3D tran
 Here is an example rendering of the effect:
 ![scene](https://github.com/rcabanier/detached_explainer/raw/master/detached.gif "Scene")
 
+As the page or a parent element scrolls, the detached element should scroll. CSS animations and transitions will apply as well.
+
 Because we don't want to render content anywhere in the user's space, we also propose to define a "safe space" around the browser.
 Content can not be placed outside this space.
 ![prism](https://github.com/rcabanier/detached_explainer/raw/master/prism.gif "Prism")
