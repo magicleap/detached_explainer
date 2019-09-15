@@ -11,7 +11,7 @@
 ## Introduction
 [//]: # ([The “executive summary” or “abstract”. Explain in a few sentences what the goals of the project are, and a brief overview of how the solution works. This should be no more than 1-2 paragraphs.])
 
-With the advent of Virtual and Augmented reality, a new style of 3D interfaces is emerging. We are no longer limited to flat monitors; instead the user interface can be broken up in sections and positioned within your 3D space (for VR) or the real world (for AR).
+With the advent of Virtual and Augmented reality, a new style of 3D interfaces is emerging. We are no longer limited to flat screens; instead the user interface can be broken up in sections and positioned within your 3D space (for VR) or the real world (for AR).
 
 Browser vendors are developing WebXR for WebGL rendered content and are experimenting with [basic 3D models](https://developers.google.com/web/updates/2019/02/model-viewer) and other [interactive experiences](https://creator.magicleap.com/learn/guides/prismatic-getting-started).
 However, until now it was not possible to position CSS generated content in 3D.
@@ -20,17 +20,18 @@ However, until now it was not possible to position CSS generated content in 3D.
 
 Our goal is to break off parts of web page into the 3-d space around the browser surface. 
 
-This would make viewing web pages a much more immersive experience than looking at a rectangular surface. We hope to do accomplis this by introducing a small change to CSS.
+This would make viewing web pages a much more immersive experience rather than looking at a rectangular surface. We hope to do accomplish this by introducing a small addition to CSS.
 
 We propose to introduce a new value for `transform-style`: `detached`.
 
 This new property builds upon the existing 3D transforms that are shipping in all browsers and extends the behavior of `transform-style: preserve-3d`. The main difference is that instead of flattening the transformed elements back to the page, the transformed element stays in 3D space.
+If `transform-style: detached` is specified on an element, children with 3D transforms will be lifted out of the page.
 
 Here is an example rendering of the effect:
 ![scene](https://github.com/rcabanier/detached_explainer/raw/master/detached.gif "Scene")
 
-Because we don't want to render content anywhere in the user's space, we also propose to define a "safe" space around the browser.
-Content can not be place outside this space.
+Because we don't want to render content anywhere in the user's space, we also propose to define a "safe space" around the browser.
+Content can not be placed outside this space.
 ![prism](https://github.com/rcabanier/detached_explainer/raw/master/prism.gif "Prism")
 
 
