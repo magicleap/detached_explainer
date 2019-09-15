@@ -52,7 +52,7 @@ Example:
     </head>
     <body>
         <div id="scene">
-            <p>This is detached text</p>
+            <div id="element">This is detached text</div>
         </div>
     </body>
 
@@ -119,7 +119,7 @@ Another possibility is to apply the `detached` value to elements under the `pres
     </head>
     <body>
         <div id="scene">
-            <p>This is detached text</p>
+            <div id="element">This is detached text</div>
         </div>
     </body>
 
