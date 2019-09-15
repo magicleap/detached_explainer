@@ -36,6 +36,25 @@ Because we don't want to render content anywhere in the user's space, we also pr
 Content can not be placed outside this space.
 ![prism](https://github.com/rcabanier/detached_explainer/raw/master/prism.gif "Prism")
 
+Example:
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        .scene {
+            transform-style: detached;
+        }
+        .element {
+            transform: rotateY(30deg) translateZ(25px); }
+        }
+      </style>
+    </head>
+    <body>
+        <div id="scene">
+            <p>This is detached text</p>
+        </div>
+    </body>
+
 
 [//]: # (## Goals [or Motivating Use Cases, or Scenarios])
 [//]: # ([What is the end-user need which this project aims to address?])
@@ -81,6 +100,26 @@ iframes should not be allowed to created detached content. This feature will onl
 ## Considered alternatives
 
 [//]: # ([This should include as many alternatives as you can, from high level architectural decisions down to alternative naming choices.])
+
+Another possibility is to apply the `detached` value to elements under the `preserve-3d` style. For instance:
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        .scene {
+            transform-style: preserve-3d;
+        }
+        .element {
+            transform-style: detached;
+            transform: rotateY(30deg) translateZ(25px); }
+        }
+      </style>
+    </head>
+    <body>
+        <div id="scene">
+            <p>This is detached text</p>
+        </div>
+    </body>
 
 [//]: # ([Alternative 1])
 
