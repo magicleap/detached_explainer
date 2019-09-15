@@ -37,6 +37,7 @@ Content can not be placed outside this space.
 ![prism](https://github.com/rcabanier/detached_explainer/raw/master/prism.gif "Prism")
 
 Example:
+
     <!DOCTYPE html>
     <html>
     <head>
@@ -102,6 +103,7 @@ iframes should not be allowed to created detached content. This feature will onl
 [//]: # ([This should include as many alternatives as you can, from high level architectural decisions down to alternative naming choices.])
 
 Another possibility is to apply the `detached` value to elements under the `preserve-3d` style. For instance:
+
     <!DOCTYPE html>
     <html>
     <head>
