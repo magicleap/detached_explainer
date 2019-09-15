@@ -20,11 +20,11 @@ Browser vendors are developing WebXR for WebGL rendered content and are experime
 We want to add a new feature to CSS: Page decomposition.
 This feature would enable breaking off elements of web page into the 3-d space around the browser surface. This would make viewing web pages a much more immersive experience than looking at a rectangular surface would be. 
 Here is an example rendering of the effect:
-![scene](https://github.com/rcabanier/detached_explainer/raw/master/src/detached.gif "Scene")
+![scene](https://github.com/rcabanier/detached_explainer/raw/master/detached.gif "Scene")
 
 Because we don't want to render content anywhere in the user's space, we also propose to define a "safe" space around the browser.
 Content can not be place outside this space.
-![prism](https://github.com/rcabanier/detached_explainer/raw/master/src/prism.gif "Prism")
+![prism](https://github.com/rcabanier/detached_explainer/raw/master/prism.gif "Prism")
 
 
 [//]: # (## Goals [or Motivating Use Cases, or Scenarios])
