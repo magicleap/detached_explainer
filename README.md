@@ -131,7 +131,7 @@ This introduces a ambiguity on how any children and grand-children with transfor
 
 Concern was raised that a similar behavior could be achieved without introducing new transform or transform-style keywords.
 
-In the alternative proposed by David Baron (with added details from Chris Harrelson), all surfaces that do not have a flattening parent (including `<html>` which would have to use transform-style: `preserve-3d`) will be detached.
+In the alternative proposed by David Baron (with added details from Chris Harrelson), all surfaces that do not have a flattening parent will be detached. `<html>` tag would have to use transform-style: `preserve-3d` to allow detaching elements.
 
 Chris Harrelson further proposed that surfaces which do not have detached parents and do not have transforms that would cause it to 'pop out' of the main surface can be left un-detached.
 
